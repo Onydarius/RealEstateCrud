@@ -7,6 +7,10 @@ package com.onydarius.web;
 		import org.springframework.boot.SpringApplication;
 		import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+		import java.time.LocalDate;
+		import java.time.Month;
+		import java.util.Date;
+
 @SpringBootApplication
 public class RealEstateCrudApplication implements CommandLineRunner {
 
@@ -19,13 +23,12 @@ public class RealEstateCrudApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Client client1 = new Client("Jesus", "Rubio", "Villalobos");
-		Client client2 = new Client("Zaira", "Escobar", "Moreno");
-		Client client3 = new Client("Fernando", "Aparicio", "Ponce");
+		Client client1 = new Client("Jesus Ricardo", "Rubio", "Villalobos", "Av Lazaro Cardenas #124", "Colonia Centro","Pátzcuaro", "Michoacan", "61600", "Na", "Estudiante",
+				"Onydarius@hotmail.com","Tijuana B.C.", LocalDate.of(1999, Month.JANUARY, 17), "Soltero", "Na" );
 
 		repository.save(client1);
-		repository.save(client2);
-		repository.save(client3);
+		repository.save(client1);
+		repository.save(client1);
 
 	}
 }
