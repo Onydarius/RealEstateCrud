@@ -1,244 +1,178 @@
-<!DOCTYPE html >
+<!DOCTYPE html>
+<!-- Coding by CodingLab | www.codinglabweb.com -->
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title> Clientes </title>
-        <meta charset="utf-8">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
-        <link rel=¨stylesheet¨ href="-../css/style.css">
-    </head>
 
-    <body>
-        <div>
-            <div class="row flex-nowrap">
-                <div class="d-flex flex-column justify-content-between bg-dark col-auto col-md-3 col-lg-2 min-vh-100">
-                    <div class="bg-dark p-2">
-                        <a href="" class="d-flex text-decoration-none mt-1 align-items-center  text-white">
-                            <span class="fs-4 d-none d-sm-inline">Side Menu</span>
-                        </a>
-                        <ul class="nav nav-pills flex-column text-white mt-2 mt-sm-0" id="menu">
-                            <li class="nav-item py-2 py-sm-0">
-                                <a href="" class="text-decoration-none text-white">
-                                    <i class="bi bi-house-fill text-white fs-4"></i>
-                                    <span class="ms-2 d-none d-sm-inline"> Dashboard</span>
-                                </a>
-                            </li>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-                            <li class="nav-item py-2 py-sm-0">
-                                <a href="" class="text-decoration-none text-white">
-                                    <i class="bi bi-people-fill fs-4"></i>
-                                    <span class="ms-2 d-none d-sm-inline" > Clientes</span>
-                                </a>
-                            </li>
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 
-                            <li class="nav-item py-2 py-sm-0">
-                                <a href="" class="text-decoration-none text-white">
-                                    <i class="bi bi-boxes fs-4"></i>
-                                    <span class="ms-2 d-none d-sm-inline"> Terrenos</span>
-                                </a>
-                            </li>
+    <!----===== Boxicons CSS ===== -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 
-                            <li class="nav-item py-2 py-sm-0">
-                                <a href="" class="text-decoration-none text-white">
-                                    <i class="bi bi-currency-dollar fs-4"></i>
-                                    <span class="ms-2 d-none d-sm-inline"> Venta</span>
-                                </a>
-                            </li>
+    <!-----===== JQUERY =====---->
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
-                            <li class="nav-item py-2 py-sm-0">
-                                <a href="" class="text-decoration-none text-white">
-                                    <i class="bi bi-credit-card-fill fs-4"></i>
-                                    <span class="ms-2 d-none d-sm-inline"> Financiamiento</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
 
-                <div class="container-xl overflow">
-                    <div class="table-responsive">
-                        <div class="table-wrapper">
-                            <div class="table-title">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <h2>Administrar <b>Clientes</b></h2>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <a href="#addClientModal" class="btn btn-success" data-toggle="modal"  data-target="#clientModal"><i class="material-icons"></i> <span>Agregar cliente</span></a>
-                                        <a href="#deleteClientModal" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"><i class="material-icons"></i> <span>Eliminar</span></a>
-                                    </div>
-                                </div>
-                            </div>
+    <!-----===== DataTables =====---->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+
+    <!----====== Bootstrap =====---->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <div id="nav-placeholder"></div>
 
 
 
-                            <table class="table table-striped table-hover">
-                                <thead>
-                                <tr>
-                                    <th>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="selectAll">
-								<label for="selectAll"></label>
-							</span>
-                                    </th>
-                                    <th>Nombre</th>
-                                    <th>Correo</th>
-                                    <th>Telefono</th>
-                                    <th>Acciones</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:each="Client: ${Clients}">
-                                    <td> <input type="checkbox" th:id="${Client.id}" name="options[]" value="1"/></td>
-                                    <td th:text="|${Client.name} ${Client.firstLastName} ${Client.firstSecondName}|"></td>
-                                    <td th:text="${Client.email}"></td>
-                                    <td th:text="${Client.address}"></td>
+    <section class="home">
+        <div id="liveAlertPlaceholder"></div>
 
-                                    <td>
-                                        <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="bi bi-pencil-square"></i></a>
-                                        <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="bi bi-trash3-fill"></i></a>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
 
-                            <div class="clearfix">
-                                <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
-                                <ul class="pagination">
-                                    <li class="page-item disabled"><a href="#" class="page-link">Previous</a></li>
-                                    <li class="page-item"><a href="#" class="page-link">1</a></li>
-                                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                                    <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                                    <li class="page-item"><a href="#" class="page-link">4</a></li>
-                                    <li class="page-item"><a href="#" class="page-link">5</a></li>
-                                    <li class="page-item"><a href="#" class="page-link">Next</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="text">Clientes</div>
+
+
+        <div class=" container">
+            <div>
+                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#clientModal">
+                    <i class='bx bxs-user-plus'></i>Añadir cliente
+                </button>
+            </div>
+
+            <div class="buttons">
 
             </div>
 
+            <table id="myTable" class="display">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Telefono</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="Client: ${Clients}">
+                        <td th:text=" |${Client.name} ${Client.firstLastName} ${Client.firstSecondName}|">
+                        </td>
+                        <td th:text="${Client.email}"></td>
+                        <td th:text="${Client.address}"></td>
+                        <td>
+                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class='bx bxs-edit-alt'></i></a>
+                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class='bx bxs-trash'></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
-        <div id="clientModal" class="modal fade">
+
+        <div id="clientModal" class="modal fade  modal-lg">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form>
                         <div class="modal-header">
                             <h4 class="modal-title">Agregar Cliente</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <button type="button" class="btn-close modal_btn_close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
                                 <label>Nombre(s)</label>
                                 <input id="name" type="text" class="form-control" required="true">
                             </div>
-
                             <div class="row">
                                 <div class="form-group col">
                                     <label>Apellido paterno</label>
-                                    <input type="text" class="form-control" required="">
+                                    <input id="first-surname" type="text" class="form-control" required="">
                                 </div>
-
                                 <div class="form-group col">
                                     <label>Apellido materno</label>
-                                    <input type="text" class="form-control" required="">
+                                    <input id="second-surname" type="text" class="form-control" required="">
                                 </div>
-
                             </div>
                             <div class="form-group">
                                 <label>Correo</label>
-                                <input type="email" class="form-control" required="">
+                                <input id="email" type="email" class="form-control" required="">
                             </div>
+
+                            <div class="row ">
+                                <div class="form-group col">
+                                    <label>Telefono 1</label>
+                                    <input id="phone" type="text" class="form-control" required="">
+                                </div>
+
+                                <div class="form-group col">
+                                    <label>Tipo</label>
+                                    <select id="phone-type" class="form-select">
+                                        <option selected="" value="0">Selecciona una opción</option>
+                                        <option>Casa</option>
+                                        <option>Celular</option>
+                                        <option>Trabajo</option>
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <label>Dirección 1</label>
-                                <input type="email" class="form-control" required="">
+                                <input id="address" type="text" class="form-control" required="">
                             </div>
                             <div class="form-group">
                                 <label>Dirección 2</label>
-                                <input type="email" class="form-control" required="">
+                                <input id="address-complement" type="text" class="form-control" required="">
+                            </div>
+                            <div class="row">
+                                <div class="form-group col">
+                                    <label>Estado</label>
+                                    <select id="states" class="form-control bfh -states">
+                                        <option selected="" value="0">Selecciona una opción</option>
+                                    </select>
+
+                                </div>
+                                <div class="form-group col">
+                                    <label>Localidad</label>
+                                    <select id="city" class="form-select">
+                                        <option selected="" value="0">Selecciona una opción</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col">
+                                    <label>Codigo Postal</label>
+                                    <input id="postal-code" type="text" class="form-control" required="" maxlength="5">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col">
+                                    <label>Ocupacion</label>
+                                    <input id="occupation" type="text" class="form-control" required="">
+                                </div>
+                                <div class="form-group col">
+                                    <label>Trabaja en</label>
+                                    <input id="working-on" type="text" class="form-control" required="">
+                                </div>
                             </div>
 
-
-
-                            <div class="form-group">
-                                <label>Estado</label>
-                                <select class="form-control bfh -states" data-country="US" data-state="CA"></select>                            </div>
-                            <div class="form-group">
-                                <label>Address</label>
-                                <textarea class="form-control" required=""></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Address</label>
-                                <textarea class="form-control" required=""></textarea>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Dirección 1</label>
-
-                                <select>
-                                    <option value="Aguascalientes">Aguascalientes</option>
-                                    <option value="Baja California">Baja California</option>
-                                    <option value="Baja California Sur">Baja California Sur</option>
-                                    <option value="Campeche">Campeche</option>
-                                    <option value="Chiapas">Chiapas</option>
-                                    <option value="Chihuahua">Chihuahua</option>
-                                    <option value="Coahuila">Coahuila</option>
-                                    <option value="Colima">Colima</option>
-                                    <option value="Distrito Federal">Distrito Federal</option>
-                                    <option value="Durango">Durango</option>
-                                    <option value="Guanajuato">Guanajuato</option>
-                                    <option value="Guerrero">Guerrero</option>
-                                    <option value="Hidalgo">Hidalgo</option>
-                                    <option value="Jalisco">Jalisco</option>
-                                    <option value="Mexico">Mexico</option>
-                                    <option value="Michoacan">MichoacÃ¡n</option>
-                                    <option value="Morelos">Morelos</option>
-                                    <option value="Nayarit">Nayarit</option>
-                                    <option value="Nuevo Leon">Nuevo LeÃ³n</option>
-                                    <option value="Oaxaca">Oaxaca</option>
-                                    <option value="Puebla">Puebla</option>
-                                    <option value="Queretaro">QuerÃ©taro</option>
-                                    <option value="Quintana Roo">Quintana Roo</option>
-                                    <option value="San Luis Potosi">San Luis Potosi</option>
-                                    <option value="Sinaloa">Sinaloa</option>
-                                    <option value="Sonora">Sonora</option>
-                                    <option value="Tabasco">Tabasco</option>
-                                    <option value="Tamaulipas">Tamaulipas</option>
-                                    <option value="Tlaxcala">Tlaxcala</option>
-                                    <option value="Veracruz">Veracruz</option>
-                                    <option value="Yucatan">Yucatan</option>
-                                    <option value="Zacatecas">Zacatecas</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Address</label>
-                                <textarea class="form-control" required=""></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Address</label>
-                                <textarea class="form-control" required=""></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Address</label>
-                                <textarea class="form-control" required=""></textarea>
-                            </div>
                             <div class="form-group">
                                 <label>Fecha de nacimiento</label>
-                                <div class="input-append date" id="dp3" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
-                                    <input class="span2" size="16" type="text" value="12-02-2012">
-                                    <span class="add-on"><i class="icon-th"></i></span>
-                                </div>                            </div>
+                                <input type="date" id="birthday" class="form-control" name="trip-start" value=""
+                                    min="1900-01-01" max="2025-12-31">
+                            </div>
 
                             <div class="form-group">
                                 <label>Estado civil</label>
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>Selecciona una opción</option>
+                                <select id="civil-status" class="form-select" aria-label="Default select example">
+                                    <option selected="" value="0">Selecciona una opción</option>
                                     <option value="soltero">Soltero(a)</option>
                                     <option value="casado">Casado(a)</option>
                                     <option value="divorciado">Divorciado(a)</option>
@@ -250,8 +184,9 @@
 
                             <div class="form-group">
                                 <label>Regimen de bienes</label>
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>Selecciona una opción</option>
+                                <select id="arrangement-property" class="form-select"
+                                    aria-label="Default select example">
+                                    <option selected="" value="0">Selecciona una opción</option>
                                     <option value="soltero">Mancomunados</option>
                                     <option value="casado">Separados</option>
                                     <option value="divorciado">Mixto</option>
@@ -261,16 +196,112 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" class="btn btn-success" value="Add">
+                            <input type="button" id="" class="btn btn-default modal_btn_close" data-bs-dismiss="modal"
+                                value="Cancel">
+                            <input type="submit" class="btn btn-dark" value="Añadir">
                         </div>
                     </form>
                 </div>
             </div>
         </div>
+    </section>
 
-    </body>
+
+
+
     <script>
-        $('.datepicker').datepicker()
+        const select = document.querySelector("#states");
+        const citySelect = document.querySelector("#city");
+
+        const states = fetch("./data/data.json")
+            .then(response => {
+                return response.json();
+            })
+            .then(data => {
+                Object.keys(data).forEach(state => {
+                    var opt = document.createElement('option');
+                    opt.value = state;
+                    opt.innerHTML = state;
+                    select.appendChild(opt);
+                });
+                var opt = document.createElement('option');
+                opt.value = "Otro";
+                opt.innerHTML = "Otro";
+                select.appendChild(opt);
+                return data;
+            });
+
+
+        select.addEventListener("change", (event) => {
+            const result = event.target.value;
+            citySelect.innerText = null;
+            const promise1 = Promise.resolve(states);
+            promise1.then((value) => {
+                value[result].forEach(city => {
+                    var opt = document.createElement('option');
+                    opt.value = city;
+                    opt.innerHTML = city;
+                    citySelect.appendChild(opt);
+                });
+            });
+
+        });
+        $('.modal_btn_close').click(function () {
+            document.getElementById('name').value = "";
+            document.getElementById('first-surname').value = "";
+            document.getElementById('first-surname').value = "";
+            document.getElementById('email').value = "";
+            document.getElementById('phone').value = "";
+            document.getElementById('phone-type').value = "0";
+            document.getElementById('address').value = "";
+            document.getElementById('address-complement').value = "";
+            document.getElementById('states').value = "0";
+            document.getElementById('city').value = "0";
+            document.getElementById('postal-code').value = "";
+            document.getElementById('occupation').value = "";
+            document.getElementById('working-on').value = "";
+            document.getElementById('birthday').value = "";
+            document.getElementById('civil-status').value = "0";
+            document.getElementById('arrangement-property').value = "0";
+        });
+
+        $.get("../components/nav.html", function (data) {
+            $("#nav-placeholder").replaceWith(data);
+        });
+
+        $(document).ready(function () {
+            $('#myTable').DataTable({
+                dom: 'Bfrtip',
+                language: {
+                    "decimal": "",
+                    "emptyTable": "No hay información disponible en la tabla",
+                    "info": "Mostrando del _START_ al _END_ de un total de  _TOTAL_ entradas",
+                    "infoEmpty": "Mostrando 0 a 0 de 0 entradas",
+                    "infoFiltered": "(Filtrando de  un total de _MAX_  entradas)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Mostrando _MENU_ entradas",
+                    "loadingRecords": "Cargando...",
+                    "processing": "",
+                    "search": "Busqueda:",
+                    "zeroRecords": "No se encontraron resultados",
+                    "paginate": {
+                        "first": "Primera",
+                        "last": "Ultima",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    },
+                    "aria": {
+                        "sortAscending": ": activate to sort column ascending",
+                        "sortDescending": ": activate to sort column descending"
+                    }
+                }
+            });
+
+
+        });
     </script>
+
+</body>
+
 </html>
