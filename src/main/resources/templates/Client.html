@@ -65,13 +65,13 @@
                 </thead>
                 <tbody>
                     <tr th:each="Client: ${Clients}">
-                        <td th:text=" |${Client.name} ${Client.firstLastName} ${Client.firstSecondName}|">
-                        </td>
+
+                        <td th:text="|${Client.name} ${Client.firstLastName} ${Client.firstSecondName}|"></td>
                         <td th:text="${Client.email}"></td>
                         <td th:text="${Client.address}"></td>
                         <td>
-                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class='bx bxs-edit-alt'></i></a>
-                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class='bx bxs-trash'></i></a>
+                            <a class="edit" data-toggle="modal"><i class='bx bxs-edit-alt'></i></a>
+                            <a class="delete" data-bs-toggle="modal" data-bs-target="#deleteModal" th:data-id="${Client.id}" th:data-name="|${Client.name} ${Client.firstLastName} ${Client.firstSecondName}|" ><i class='bx bxs-trash'></i></a>
                         </td>
                     </tr>
                 </tbody>
@@ -82,7 +82,7 @@
         <div id="clientModal" class="modal fade  modal-lg">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form>
+                    <form th:action="@{/Clients/Save}" th:object="${Client}" method="post">
                         <div class="modal-header">
                             <h4 class="modal-title">Agregar Cliente</h4>
                             <button type="button" class="btn-close modal_btn_close" data-bs-dismiss="modal"
@@ -91,33 +91,35 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label>Nombre(s)</label>
-                                <input id="name" type="text" class="form-control" required="true">
+                                <input id="name" th:field="*{name}" type="text" class="form-control" required="true">
                             </div>
                             <div class="row">
                                 <div class="form-group col">
                                     <label>Apellido paterno</label>
-                                    <input id="first-surname" type="text" class="form-control" required="">
+                                    <input id="first-surname" th:field="*{firstLastName}"  type="text" class="form-control" required="">
                                 </div>
                                 <div class="form-group col">
                                     <label>Apellido materno</label>
-                                    <input id="second-surname" type="text" class="form-control" required="">
+                                    <input id="second-surname" th:field="*{firstSecondName}"  type="text" class="form-control" required="">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Correo</label>
-                                <input id="email" type="email" class="form-control" required="">
+                                <input id="email" th:field="*{email}"  type="email" class="form-control" required="">
                             </div>
 
                             <div class="row ">
                                 <div class="form-group col">
                                     <label>Telefono 1</label>
-                                    <input id="phone" type="text" class="form-control" required="">
+                                    <!--th:field="*{phone}" -->
+                                    <input id="phone"  type="text" class="form-control" required="true">
                                 </div>
 
                                 <div class="form-group col">
                                     <label>Tipo</label>
-                                    <select id="phone-type" class="form-select">
-                                        <option selected="" value="0">Selecciona una opción</option>
+                                    <!--th:field="*{phone-type}"-->
+                                    <select id="phone-type"   class="form-select" required="true">
+                                        <option selected="" value="0" disabled>Selecciona una opción</option>
                                         <option>Casa</option>
                                         <option>Celular</option>
                                         <option>Trabajo</option>
@@ -127,52 +129,58 @@
 
                             <div class="form-group">
                                 <label>Dirección 1</label>
-                                <input id="address" type="text" class="form-control" required="">
+                                <input id="address" th:field="*{address}"  type="text" class="form-control" required="true">
                             </div>
                             <div class="form-group">
                                 <label>Dirección 2</label>
-                                <input id="address-complement" type="text" class="form-control" required="">
+                                <input id="address-complement" th:field="*{addressComplement}"  type="text" class="form-control" required="true">
                             </div>
                             <div class="row">
                                 <div class="form-group col">
                                     <label>Estado</label>
-                                    <select id="states" class="form-control bfh -states">
-                                        <option selected="" value="0">Selecciona una opción</option>
+                                    <select id="states" th:field="*{state}"  class="form-control bfh -states" required="true">
+                                        <option selected="" value="0" disabled>Selecciona una opción</option>
                                     </select>
 
                                 </div>
                                 <div class="form-group col">
                                     <label>Localidad</label>
-                                    <select id="city" class="form-select">
-                                        <option selected="" value="0">Selecciona una opción</option>
+                                    <select id="city" th:field="*{city}"  class="form-select" required="true">
+                                        <option selected="" value="0" disabled>Selecciona una opción</option>
                                     </select>
                                 </div>
                                 <div class="form-group col">
                                     <label>Codigo Postal</label>
-                                    <input id="postal-code" type="text" class="form-control" required="" maxlength="5">
+                                    <input id="postal-code" th:field="*{postalCode}"  type="text" class="form-control"  required="true" maxlength="5">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col">
                                     <label>Ocupacion</label>
-                                    <input id="occupation" type="text" class="form-control" required="">
+                                    <input id="occupation" th:field="*{occupation}"  type="text" class="form-control"  required="true">
                                 </div>
                                 <div class="form-group col">
                                     <label>Trabaja en</label>
-                                    <input id="working-on" type="text" class="form-control" required="">
+                                    <input id="working-on" th:field="*{workingOn}"  type="text" class="form-control"  required="true">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col">
+                                    <label>Lugar de nacimiento</label>
+                                    <input id="birthplace" th:field="*{birthplace}"  type="text" class="form-control"  required="true">
+                                </div>
+                                <div class="form-group col">
+                                    <label>Fecha de nacimiento</label>
+                                    <input type="date" id="birthday" th:field="*{birthday}" required="true" class="form-control" name="trip-start" value=""
+                                           min="1900-01-01" max="2025-12-31">
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <label>Fecha de nacimiento</label>
-                                <input type="date" id="birthday" class="form-control" name="trip-start" value=""
-                                    min="1900-01-01" max="2025-12-31">
-                            </div>
 
                             <div class="form-group">
                                 <label>Estado civil</label>
-                                <select id="civil-status" class="form-select" aria-label="Default select example">
-                                    <option selected="" value="0">Selecciona una opción</option>
+                                <select id="civil-status" th:field="*{civilStatus}" required="true" class="form-select" aria-label="Default select example">
+                                    <option selected="" value="0" disabled>Selecciona una opción</option>
                                     <option value="soltero">Soltero(a)</option>
                                     <option value="casado">Casado(a)</option>
                                     <option value="divorciado">Divorciado(a)</option>
@@ -184,9 +192,9 @@
 
                             <div class="form-group">
                                 <label>Regimen de bienes</label>
-                                <select id="arrangement-property" class="form-select"
-                                    aria-label="Default select example">
-                                    <option selected="" value="0">Selecciona una opción</option>
+                                <select id="arrangement-property" th:field="*{arrangementProperty}"  class="form-select"
+                                    aria-label="Default select example" required="true">
+                                    <option selected="" value="0" disabled>Selecciona una opción</option>
                                     <option value="soltero">Mancomunados</option>
                                     <option value="casado">Separados</option>
                                     <option value="divorciado">Mixto</option>
@@ -204,6 +212,25 @@
                 </div>
             </div>
         </div>
+
+
+        <div id="deleteModal" class="modal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Eliminar</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <a href="" class="btn btn-primary">Si, deseo eliminarlo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
 
@@ -213,7 +240,7 @@
         const select = document.querySelector("#states");
         const citySelect = document.querySelector("#city");
 
-        const states = fetch("./data/data.json")
+        const states = fetch("/data/data.json")
             .then(response => {
                 return response.json();
             })
@@ -298,8 +325,23 @@
                 }
             });
 
+            const modal = document.getElementById('deleteModal');
+            if (modal) {
+                modal.addEventListener('show.bs.modal', event => {
+                    const button = event.relatedTarget
+                    const id = button.getAttribute('data-id')
+                    const name = button.getAttribute('data-name')
+
+                    const modalSubmitButton = modal.querySelector('.modal-footer a')
+                    const modalBody = modal.querySelector('.modal-body')
+
+                    modalBody.innerHTML = `¿Estas seguro de que deseas eliminar a ${name}?`;
+                    modalSubmitButton.href = `Clients/delete/${id}`
+        })}
+
 
         });
+
     </script>
 
 </body>

@@ -12,7 +12,7 @@ package com.onydarius.web;
 		import java.util.Date;
 
 @SpringBootApplication
-public class RealEstateCrudApplication implements CommandLineRunner {
+public class RealEstateCrudApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(RealEstateCrudApplication.class, args);
@@ -21,7 +21,8 @@ public class RealEstateCrudApplication implements CommandLineRunner {
 	@Autowired
 	private IClientRepo repository;
 
-	@Override
+	/*@Override
+	implements CommandLineRunner
 	public void run(String... args) throws Exception {
 		Client client1 = new Client("Jesus Ricardo", "Rubio", "Villalobos", "Av Lazaro Cardenas #124", "Colonia Centro","Pátzcuaro", "Michoacan", "61600", "Na", "Estudiante",
 				"Onydarius@hotmail.com","Tijuana B.C.", LocalDate.of(1999, Month.JANUARY, 17), "Soltero", "Na" );
@@ -30,5 +31,5 @@ public class RealEstateCrudApplication implements CommandLineRunner {
 		repository.save(client1);
 		repository.save(client1);
 
-	}
+	}*/
 }
