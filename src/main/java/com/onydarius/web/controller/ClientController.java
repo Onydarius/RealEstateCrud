@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.Optional;
+
 @Controller
 public class ClientController {
 
@@ -21,7 +23,7 @@ public class ClientController {
     public  String listClient(Model model){
         model.addAttribute("Clients", service.listAllClient());
         model.addAttribute("Client", new Client());
-
+        model.addAttribute("action","Save");
         return "Client";
     }
 
@@ -30,6 +32,7 @@ public class ClientController {
         service.save(client);
         return "redirect:/Clients";
     }
+
 
     @GetMapping("Clients/delete/{id}")
     public String delete(Model model, @PathVariable int id){

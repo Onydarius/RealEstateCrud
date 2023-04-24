@@ -70,7 +70,25 @@
                         <td th:text="${Client.email}"></td>
                         <td th:text="${Client.address}"></td>
                         <td>
-                            <a class="edit" data-toggle="modal"><i class='bx bxs-edit-alt'></i></a>
+                            <a class="edit" data-bs-toggle="modal" data-bs-target="#clientModal"
+                               th:data-id="${Client.id}"
+                               th:data-name="${Client.name}"
+                               th:data-first-lastname="${Client.firstLastName}"
+                               th:data-second-lastname="${Client.firstSecondName}"
+                               th:data-email="${Client.email}"
+                               th:data-address="${Client.address}"
+                               th:data-address-complemet="${Client.addressComplement}"
+                               th:data-state="${Client.state}"
+                               th:data-city="${Client.city}"
+                               th:data-postal-code="${Client.postalCode}"
+                               th:data-occupation="${Client.occupation}"
+                               th:data-working-on="${Client.workingOn}"
+                               th:data-birthplace="${Client.birthplace}"
+                               th:data-birthday="${Client.birthday}"
+                               th:data-civil-status="${Client.civilStatus}"
+                               th:data-arrangement-properties="${Client.arrangementProperty}"><i class='bx bxs-edit-alt'></i></a>
+                            <!-- th:data-phone=""
+                                 th:data-phone-type=""-->
                             <a class="delete" data-bs-toggle="modal" data-bs-target="#deleteModal" th:data-id="${Client.id}" th:data-name="|${Client.name} ${Client.firstLastName} ${Client.firstSecondName}|" ><i class='bx bxs-trash'></i></a>
                         </td>
                     </tr>
@@ -82,13 +100,16 @@
         <div id="clientModal" class="modal fade  modal-lg">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form th:action="@{/Clients/Save}" th:object="${Client}" method="post">
+                    <form  th:action="@{/Clients/Save}" th:object="${Client}" method="post" id="form">
                         <div class="modal-header">
                             <h4 class="modal-title">Agregar Cliente</h4>
                             <button type="button" class="btn-close modal_btn_close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
+                            <div class="form-group">
+                                <input id="id" th:field="*{id}" type="text" class="form-control" hidden>
+                            </div>
                             <div class="form-group">
                                 <label>Nombre(s)</label>
                                 <input id="name" th:field="*{name}" type="text" class="form-control" required="true">
@@ -181,11 +202,11 @@
                                 <label>Estado civil</label>
                                 <select id="civil-status" th:field="*{civilStatus}" required="true" class="form-select" aria-label="Default select example">
                                     <option selected="" value="0" disabled>Selecciona una opción</option>
-                                    <option value="soltero">Soltero(a)</option>
-                                    <option value="casado">Casado(a)</option>
-                                    <option value="divorciado">Divorciado(a)</option>
-                                    <option value="separado">Separado(a)</option>
-                                    <option value="union_libre">Union Libre</option>
+                                    <option value="Soltero">Soltero(a)</option>
+                                    <option value="Casado">Casado(a)</option>
+                                    <option value="Divorciado(a)">Divorciado(a)</option>
+                                    <option value="Separado(a)">Separado(a)</option>
+                                    <option value="Union_Libre">Union Libre</option>
                                     <option value="Viudo">Viudo(a)</option>
                                 </select>
                             </div>
@@ -195,10 +216,10 @@
                                 <select id="arrangement-property" th:field="*{arrangementProperty}"  class="form-select"
                                     aria-label="Default select example" required="true">
                                     <option selected="" value="0" disabled>Selecciona una opción</option>
-                                    <option value="soltero">Mancomunados</option>
-                                    <option value="casado">Separados</option>
-                                    <option value="divorciado">Mixto</option>
-                                    <option value="divorciado">No aplica</option>
+                                    <option value="Mancomunados">Mancomunados</option>
+                                    <option value="Separados">Separados</option>
+                                    <option value="Mixto">Mixto</option>
+                                    <option value="Na">No aplica</option>
 
                                 </select>
                             </div>
@@ -206,7 +227,7 @@
                         <div class="modal-footer">
                             <input type="button" id="" class="btn btn-default modal_btn_close" data-bs-dismiss="modal"
                                 value="Cancel">
-                            <input type="submit" class="btn btn-dark" value="Añadir">
+                            <input type="submit" class="btn btn-dark" value="Guardar">
                         </div>
                     </form>
                 </div>
@@ -325,23 +346,52 @@
                 }
             });
 
-            const modal = document.getElementById('deleteModal');
-            if (modal) {
-                modal.addEventListener('show.bs.modal', event => {
+            const deleteModal = document.getElementById('deleteModal');
+            if (deleteModal) {
+                deleteModal.addEventListener('show.bs.modal', event => {
                     const button = event.relatedTarget
                     const id = button.getAttribute('data-id')
                     const name = button.getAttribute('data-name')
 
-                    const modalSubmitButton = modal.querySelector('.modal-footer a')
-                    const modalBody = modal.querySelector('.modal-body')
+                    const modalSubmitButton = deleteModal.querySelector('.modal-footer a')
+                    const modalBody = deleteModal.querySelector('.modal-body')
 
                     modalBody.innerHTML = `¿Estas seguro de que deseas eliminar a ${name}?`;
                     modalSubmitButton.href = `Clients/delete/${id}`
         })}
 
+        const updateModal = document.getElementById('clientModal');
+            if (updateModal) {
+                updateModal.addEventListener('show.bs.modal', event => {
+                    const button = event.relatedTarget
+                    document.getElementById('id').value = button.getAttribute('data-id');
+                    document.getElementById('name').value = button.getAttribute('data-name');
+                    document.getElementById('first-surname').value = button.getAttribute('data-first-lastname');
+                    document.getElementById('second-surname').value = button.getAttribute('data-second-lastname');
+                    document.getElementById('email').value = button.getAttribute('data-email');
+                    document.getElementById('phone').value = "";
+                    document.getElementById('phone-type').value = "0";
+                    document.getElementById('address').value = button.getAttribute('data-address');
+                    document.getElementById('address-complement').value = button.getAttribute('data-address-complemet');
+                    document.getElementById('states').value = button.getAttribute('data-state');
+                    document.getElementById('city').value = button.getAttribute('data-city');
+                    document.getElementById('postal-code').value = button.getAttribute('data-postal-code');
+                    document.getElementById('occupation').value = button.getAttribute('data-occupation');
+                    document.getElementById('working-on').value = button.getAttribute('data-working-on');
+                    document.getElementById('birthplace').value = button.getAttribute('data-birthplace');
+                    document.getElementById('birthday').value = button.getAttribute('data-birthday');
+                    document.getElementById('civil-status').value = button.getAttribute('data-civil-status');
+                    document.getElementById('arrangement-property').value = button.getAttribute('data-arrangement-properties');
+                })}
 
+            $("form").submit(function(){
+                if($('#id').val() === ""){
+                    const element = document.getElementById("id");
+                    element.remove();
+                }
+                return true;
+    });
         });
-
     </script>
 
 </body>
