@@ -1,7 +1,7 @@
 package com.onydarius.web;
 
 		import com.onydarius.web.controller.entity.Client;
-		import com.onydarius.web.repository.IClientRepo;
+		import com.onydarius.web.repository.IClientRepository;
 		import org.springframework.beans.factory.annotation.Autowired;
 		import org.springframework.boot.CommandLineRunner;
 		import org.springframework.boot.SpringApplication;
@@ -19,7 +19,7 @@ public class RealEstateCrudApplication {
 	}
 
 	@Autowired
-	private IClientRepo repository;
+	private IClientRepository repository;
 
 	/*@Override
 	implements CommandLineRunner
