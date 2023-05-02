@@ -1,6 +1,6 @@
 package com.onydarius.web.services;
 
-import com.onydarius.web.controller.entity.Client;
+import com.onydarius.web.entities.Client;
 import com.onydarius.web.repositories.IClientRepository;
 import com.onydarius.web.services.IClientService;
 import org.springframework.beans.factory.annotation.Autowired;

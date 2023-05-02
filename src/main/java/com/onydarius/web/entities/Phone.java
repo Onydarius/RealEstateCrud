@@ -7,12 +7,18 @@ import jakarta.persistence.*;
 public class Phone {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "phone_id")
     private long id;
 
     @Column(name = "number", nullable = false)
     String number;
     @Column(name = "type", nullable = false)
     String type;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "client_id", nullable = false)
+    private Client client;
+
 
     public Phone(String number, String type) {
         this.number = number;

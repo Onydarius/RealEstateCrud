@@ -1,10 +1,8 @@
-package com.onydarius.web.controller.entity;
-
-import com.onydarius.web.entities.Phone;
+package com.onydarius.web.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table (name = "client")
@@ -28,9 +26,8 @@ public class Client {
     @Column(name = "address_complement", nullable = false)
     private String addressComplement;
 
-    @OneToMany
-    @JoinColumn(name = "Telephone")
-    private List<Phone> phone;
+    @OneToMany(mappedBy = "id", fetch = FetchType.LAZY)
+    private Set<Phone> phone;
 
     @Column(name = "city", nullable = false)
     private String city;
@@ -71,12 +68,13 @@ public class Client {
         this.firstSecondName = firstSecondName;
     }
 
-    public Client(String name, String firstLastName, String firstSecondName, String address, String addressComplement, String city, String state, String postalCode, String workingOn, String occupation, String email, String birthplace, LocalDate birthday, String civilStatus, String arrangementProperty) {
+    public Client(String name, String firstLastName, String firstSecondName, String address, String addressComplement, Set<Phone> phone,String city, String state, String postalCode, String workingOn, String occupation, String email, String birthplace, LocalDate birthday, String civilStatus, String arrangementProperty) {
         this.name = name;
         this.firstLastName = firstLastName;
         this.firstSecondName = firstSecondName;
         this.address = address;
         this.addressComplement = addressComplement;
+        this.phone = phone;
         this.city = city;
         this.state = state;
         this.postalCode = postalCode;
@@ -137,6 +135,12 @@ public class Client {
         this.addressComplement = addressComplement;
     }
 
+    public Set<Phone> getPhone() {
+        return phone;
+    }
+    public void setPhone(Set<Phone> phone) {
+        this.phone = phone;
+    }
     public String getCity() {
         return city;
     }
