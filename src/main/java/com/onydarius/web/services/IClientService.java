@@ -1,4 +1,4 @@
-package com.onydarius.web.service;
+package com.onydarius.web.services;
 
 import com.onydarius.web.controller.entity.Client;
 

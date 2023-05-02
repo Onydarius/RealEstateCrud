@@ -1,8 +1,10 @@
 package com.onydarius.web.controller.entity;
 
+import com.onydarius.web.entities.Phone;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table (name = "client")
@@ -25,6 +27,10 @@ public class Client {
 
     @Column(name = "address_complement", nullable = false)
     private String addressComplement;
+
+    @OneToMany
+    @JoinColumn(name = "Telephone")
+    private List<Phone> phone;
 
     @Column(name = "city", nullable = false)
     private String city;

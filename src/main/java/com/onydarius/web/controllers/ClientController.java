@@ -1,8 +1,7 @@
-package com.onydarius.web.controller;
+package com.onydarius.web.controllers;
 
 import com.onydarius.web.controller.entity.Client;
-import com.onydarius.web.repository.IClientRepository;
-import com.onydarius.web.service.IClientService;
+import com.onydarius.web.services.IClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,11 +18,11 @@ public class ClientController {
     @Autowired
     private IClientService service;
 
-    @GetMapping("/Clients")
+    @GetMapping({"/Clients","/clients"})
     public  String listClient(Model model){
         model.addAttribute("Clients", service.listAllClient());
         model.addAttribute("Client", new Client());
-        model.addAttribute("action","Save");
+        model.addAttribute("action",    "Save");
         return "Client";
     }
 

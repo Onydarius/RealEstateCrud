@@ -1,14 +1,15 @@
-package com.onydarius.web.service;
+package com.onydarius.web.services;
 
 import com.onydarius.web.controller.entity.Client;
-import com.onydarius.web.repository.IClientRepository;
+import com.onydarius.web.repositories.IClientRepository;
+import com.onydarius.web.services.IClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class ClientService implements IClientService{
+public class ClientService implements IClientService {
     @Autowired
     private IClientRepository repository;
 
