@@ -27,7 +27,7 @@ public class Plot {
     float pricePerMeter;
 
     @OneToMany(mappedBy = "plot")
-    Set<plotOwners> owners;
+    Set<PlotOwners> owners;
     String reference;
 
 

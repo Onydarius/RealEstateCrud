@@ -61,7 +61,7 @@ public class Client {
     private String arrangementProperty;
 
     @OneToMany(mappedBy = "client")
-    Set<plotOwners> owners;
+    Set<PlotOwners> owners;
     public Client() {
     }
 

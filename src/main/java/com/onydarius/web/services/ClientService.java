@@ -2,7 +2,7 @@ package com.onydarius.web.services;
 
 import com.onydarius.web.entities.Client;
 import com.onydarius.web.repositories.IClientRepository;
-import com.onydarius.web.services.IClientService;
+import com.onydarius.web.services.interfaces.IClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
