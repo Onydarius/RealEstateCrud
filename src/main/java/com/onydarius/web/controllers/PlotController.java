@@ -13,7 +13,7 @@ public class PlotController {
     private PlotService service;
     @GetMapping({"/Plots","/plots"})
     public String getAllPlots(Model model){
-        model.addAttribute("Plots", service.listAllPlot());
+        model.addAttribute("Plots", service.listAllPlots());
         return "Plots";
     }
 }
