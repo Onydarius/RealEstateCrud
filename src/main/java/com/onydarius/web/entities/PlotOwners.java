@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "plot_owners")
-public class plotOwners {
+public class PlotOwners {
     @EmbeddedId
     plotOwnersKey id;
 
@@ -19,7 +19,7 @@ public class plotOwners {
     @JoinColumn(name = "plot_id")
     Plot plot;
 
-    public plotOwners(Client client, Plot plot) {
+    public PlotOwners(Client client, Plot plot) {
         this.client = client;
         this.plot = plot;
     }
