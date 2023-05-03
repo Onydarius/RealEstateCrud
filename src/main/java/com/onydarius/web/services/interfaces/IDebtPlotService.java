@@ -4,7 +4,7 @@ import com.onydarius.web.entities.DebtPlot;
 
 import java.util.List;
 
-public interface IDebtPlot {
+public interface IDebtPlotService {
     public List<DebtPlot> listAllDebtPlot();
 
     int save(DebtPlot debtPlot);

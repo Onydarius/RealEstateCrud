@@ -4,7 +4,7 @@ import com.onydarius.web.entities.Deposit;
 
 import java.util.List;
 
-public interface IDepositRepository {
+public interface IDepositService {
     public List<Deposit> listAllDeposit();
 
     int save(Deposit deposit);
