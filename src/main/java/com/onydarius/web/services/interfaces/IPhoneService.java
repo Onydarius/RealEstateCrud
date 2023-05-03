@@ -1,4 +1,4 @@
-package com.onydarius.web.services;
+package com.onydarius.web.services.interfaces;
 
 import com.onydarius.web.entities.Phone;
 
