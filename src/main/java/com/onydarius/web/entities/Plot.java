@@ -2,10 +2,13 @@ package com.onydarius.web.entities;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "plot")
 public class Plot {
     @Id
+    @Column(name = "plot_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
     @Column(name = "plot_no", nullable = false)
@@ -23,6 +26,8 @@ public class Plot {
     @Column(name = "price_per_Meter", nullable = false)
     float pricePerMeter;
 
+    @OneToMany(mappedBy = "plot")
+    Set<plotOwners> owners;
     String reference;
 
 

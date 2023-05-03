@@ -8,6 +8,7 @@ import java.util.Set;
 @Table (name = "client")
 public class Client {
     @Id
+    @Column(name = "client_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
@@ -59,6 +60,8 @@ public class Client {
     @Column(name = "arrangement_property", nullable = false)
     private String arrangementProperty;
 
+    @OneToMany(mappedBy = "client")
+    Set<plotOwners> owners;
     public Client() {
     }
 
