@@ -15,14 +15,24 @@ public class Phone {
     @Column(name = "type", nullable = false)
     String type;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "client_id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+        @JoinColumn(name = "client_id", nullable = false)
     private Client client;
 
 
     public Phone(String number, String type) {
         this.number = number;
         this.type = type;
+    }
+
+    public Phone() {
+    }
+
+    public Phone(long id, String number, String type, Client client) {
+        this.id = id;
+        this.number = number;
+        this.type = type;
+        this.client = client;
     }
 
     public long getId() {
@@ -47,5 +57,13 @@ public class Phone {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 }

@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Terrenos</title>
     <!----======== CSS ======== -->
     <link rel="stylesheet" th:href="@{../css/style.css}">
 
@@ -49,7 +48,7 @@
     <div id="liveAlertPlaceholder"></div>
 
 
-    <div class="text">Terrenos</div>
+    <div class="text">Clientes</div>
 
 
     <div class=" container">
@@ -66,20 +65,14 @@
         <table id="myTable" class="display">
             <thead>
             <tr>
-                <th>Numero de terreno</th>
-                <th>Superficie</th>
-                <th>Precio por metro</th>
-                <th>Precio total</th>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Telefono</th>
                 <th>Acciones</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="Plot: ${Plots}">
-                <td th:text="${Plot.plotNo}"></td>
-                <td th:text="${Plot.surface}"></td>
-                <td th:text="${Plot.pricePerMeter}"></td>
-                <td th:text="${Plot.pricePerMeter}"></td>
-                <td th:text="${Plot.pricePerMeter}"></td>
+            <tr th:each="Plot: ${Clients}">
 
             </tr>
             </tbody>

@@ -1,6 +1,7 @@
 package com.onydarius.web.controllers;
 
 import com.onydarius.web.entities.Client;
+import com.onydarius.web.services.ClientService;
 import com.onydarius.web.services.interfaces.IClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class ClientController {
 
     @Autowired
-    private IClientService service;
+    private ClientService service;
 
     @GetMapping({"/Clients","/clients"})
     public  String listClient(Model model){
@@ -32,9 +33,15 @@ public class ClientController {
 
 
     @GetMapping("Clients/delete/{id}")
-    public String delete(Model model, @PathVariable int id){
+    public String delete( @PathVariable int id){
         service.delete(id);
         return "redirect:/Clients";
 
+    }
+
+    @GetMapping({"Client/{id}", "client/{id}"})
+    public String findById(Model model, @PathVariable int id){
+        model.addAttribute("Client",service.findById(id));
+        return "client_details";
     }
 }

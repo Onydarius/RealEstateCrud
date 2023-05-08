@@ -1,16 +1,7 @@
 package com.onydarius.web;
 
-		import com.onydarius.web.entities.Client;
-		import com.onydarius.web.repositories.IClientRepository;
-		import org.springframework.beans.factory.annotation.Autowired;
-		import org.springframework.boot.CommandLineRunner;
 		import org.springframework.boot.SpringApplication;
 		import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-		import java.time.LocalDate;
-		import java.time.Month;
-		import java.util.Date;
-
 @SpringBootApplication
 public class RealEstateCrudApplication {
 

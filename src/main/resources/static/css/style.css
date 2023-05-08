@@ -355,3 +355,11 @@ input {
   background-color: DodgerBlue !important;
   color: #ffffff;
 }
+
+.add-phone {
+    justify-content: center;
+    align-items: center;
+    display: grid;
+
+
+}

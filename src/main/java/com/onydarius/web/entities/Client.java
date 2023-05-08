@@ -18,8 +18,8 @@ public class Client {
     @Column(name = "first_last_name", nullable = false)
     private String firstLastName;
 
-    @Column(name = "first_second_name", nullable = false)
-    private String firstSecondName;
+    @Column(name = "second_last_name", nullable = false)
+    private String secondLastName;
 
     @Column(name = "address", nullable = false)
     private String address;
@@ -27,7 +27,8 @@ public class Client {
     @Column(name = "address_complement", nullable = false)
     private String addressComplement;
 
-    @OneToMany(mappedBy = "id", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "client_id")
     private Set<Phone> phone;
 
     @Column(name = "city", nullable = false)
@@ -48,8 +49,11 @@ public class Client {
     @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "birthplace", nullable = false)
-    private String birthplace;
+    @Column(name = "birth_state", nullable = false)
+    private String birthState;
+
+    @Column(name = "birth_city", nullable = false)
+    private String birthCity;
 
     @Column(name = "birthday", nullable = false)
     private LocalDate birthday;
@@ -62,19 +66,14 @@ public class Client {
 
     @OneToMany(mappedBy = "client")
     Set<PlotOwners> owners;
+
     public Client() {
     }
 
-    public Client(String name, String firstLastName, String firstSecondName) {
+    public Client(String name, String firstLastName, String secondLastName, String address, String addressComplement, Set<Phone> phone, String city, String state, String postalCode, String workingOn, String occupation, String email, String birthState, String birthCity, LocalDate birthday, String civilStatus, String arrangementProperty) {
         this.name = name;
         this.firstLastName = firstLastName;
-        this.firstSecondName = firstSecondName;
-    }
-
-    public Client(String name, String firstLastName, String firstSecondName, String address, String addressComplement, Set<Phone> phone,String city, String state, String postalCode, String workingOn, String occupation, String email, String birthplace, LocalDate birthday, String civilStatus, String arrangementProperty) {
-        this.name = name;
-        this.firstLastName = firstLastName;
-        this.firstSecondName = firstSecondName;
+        this.secondLastName = secondLastName;
         this.address = address;
         this.addressComplement = addressComplement;
         this.phone = phone;
@@ -84,7 +83,8 @@ public class Client {
         this.workingOn = workingOn;
         this.occupation = occupation;
         this.email = email;
-        this.birthplace = birthplace;
+        this.birthState = birthState;
+        this.birthCity = birthCity;
         this.birthday = birthday;
         this.civilStatus = civilStatus;
         this.arrangementProperty = arrangementProperty;
@@ -114,12 +114,12 @@ public class Client {
         this.firstLastName = firstLastName;
     }
 
-    public String getFirstSecondName() {
-        return firstSecondName;
+    public String getSecondLastName() {
+        return secondLastName;
     }
 
-    public void setFirstSecondName(String firstSecondName) {
-        this.firstSecondName = firstSecondName;
+    public void setSecondLastName(String secondLastName) {
+        this.secondLastName = secondLastName;
     }
 
     public String getAddress() {
@@ -141,9 +141,11 @@ public class Client {
     public Set<Phone> getPhone() {
         return phone;
     }
+
     public void setPhone(Set<Phone> phone) {
         this.phone = phone;
     }
+
     public String getCity() {
         return city;
     }
@@ -192,12 +194,20 @@ public class Client {
         this.email = email;
     }
 
-    public String getBirthplace() {
-        return birthplace;
+    public String getBirthState() {
+        return birthState;
     }
 
-    public void setBirthplace(String birthplace) {
-        this.birthplace = birthplace;
+    public void setBirthState(String birthState) {
+        this.birthState = birthState;
+    }
+
+    public String getBirthCity() {
+        return birthCity;
+    }
+
+    public void setBirthCity(String birthCity) {
+        this.birthCity = birthCity;
     }
 
     public LocalDate getBirthday() {
@@ -222,5 +232,13 @@ public class Client {
 
     public void setArrangementProperty(String arrangementProperty) {
         this.arrangementProperty = arrangementProperty;
+    }
+
+    public Set<PlotOwners> getOwners() {
+        return owners;
+    }
+
+    public void setOwners(Set<PlotOwners> owners) {
+        this.owners = owners;
     }
 }

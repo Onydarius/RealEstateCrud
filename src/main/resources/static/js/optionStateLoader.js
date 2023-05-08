@@ -1,3 +1,6 @@
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+
 $(document).ready(function () {
     const stateSelect = document.querySelector("#state");
     const birthStateSelect = document.querySelector("#birth-state");
