@@ -30,6 +30,8 @@ public class Plot {
     Set<PlotOwners> owners;
     String reference;
 
+    public Plot() {
+    }
 
     public Plot(int plotNo, double surface, float pricePerMeter, String reference) {
         this.plotNo = plotNo;
@@ -45,6 +47,18 @@ public class Plot {
         this.adjacentWest = adjacent_west;
         this.adjacentEast = adjacent_east;
         this.pricePerMeter = pricePerMeter;
+        this.reference = reference;
+    }
+
+    public Plot(long id, int plotNo, double surface, int adjacentNorth, int adjacentSouth, int adjacentWest, int adjacentEast, float pricePerMeter, Set<PlotOwners> owners, String reference) {
+        this.plotNo = plotNo;
+        this.surface = surface;
+        this.adjacentNorth = adjacentNorth;
+        this.adjacentSouth = adjacentSouth;
+        this.adjacentWest = adjacentWest;
+        this.adjacentEast = adjacentEast;
+        this.pricePerMeter = pricePerMeter;
+        this.owners = owners;
         this.reference = reference;
     }
 

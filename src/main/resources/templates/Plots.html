@@ -78,7 +78,7 @@
                 <td th:text="${Plot.plotNo}"></td>
                 <td th:text="${Plot.surface}"></td>
                 <td th:text="${Plot.pricePerMeter}"></td>
-                <td th:text="${Plot.pricePerMeter}"></td>
+                <td th:text="(${Plot.surface} * ${Plot.pricePerMeter})"></td>
                 <td th:text="${Plot.pricePerMeter}"></td>
 
             </tr>
