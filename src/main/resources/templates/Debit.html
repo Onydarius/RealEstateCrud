@@ -3,6 +3,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
+    <title>Financiar</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,7 +31,7 @@
             crossorigin="anonymous"></script>
 
     <!----===== Table format ===== --->
-    <script th:src="@{../js/formatTable.js}"></script>
+    <script th:src="@{../js/formatTableWithoutSearchBar.js}"></script>
     <!----===== Table format ===== --->
     <script th:src="@{../js/loadNavBar.js}"></script>
 
@@ -48,14 +49,86 @@
     <div id="liveAlertPlaceholder"></div>
 
 
-    <div class="text">Clientes</div>
+
 
 
     <div class=" container">
+        <div class="text d-flex justify-content-between">
+            Financiamiento
+            <div>
+                <button class="btn btn-dark">Generar tabla</button>
+                <button type="button" class="btn btn-secondary">Financiar</button>
+            </div>
+        </div>
         <div>
-            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#clientModal">
-                <i class='bx bxs-user-plus'></i>Añadir cliente
-            </button>
+            <div class="col">
+                <label>Cliente</label>
+                <select class="form-select" th:each="Client: ${Clients}">
+                    <option selected disabled>Seleccione el cliente</option>
+                    <option th:value="${Client.id}" th:text="${Client.name}"></option>
+                </select>
+            </div>
+
+            <div class="col">
+                <label>Terreno</label>
+                <select class="form-select" th:each="Plot: ${Plots}">
+                    <option selected disabled>Seleccione el terreno</option>
+                    <option th:value="${Plot.id}" th:text="${Plot.plotNo}" th:data-surface="${Plot.surface}"
+                            th:data-price-per-meter="${Plot.pricePerMeter}"
+                    > </option>
+                </select>
+
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <label>Precio de venta</label>
+                    <input class="form-control" type="text" th value="" disabled readonly>
+                </div>
+                <div class="col">
+                    <label>Fecha del primer pago</label>
+                    <input type="date" id="birthday" required="true"
+                           class="form-control" name="trip-start" value="" min="1900-01-01"
+                           max="2025-12-31">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label>Porcentaje de enganche</label>
+                    <input class="form-control" type="text" th value="15%">
+                </div>
+                <div class="col">
+                    <label>Enganche</label>
+                    <input class="form-control" type="text" th value="" disabled readonly>
+                </div>
+                <div class="col">
+                    <label>Interes Mensual</label>
+                    <input class="form-control" type="text" th value="">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label>Saldo a financiar</label>
+                    <input class="form-control" type="text" th value="" disabled readonly>
+                </div>
+                <div class="col">
+                    <label>Pago mensual</label>
+                    <input class="form-control" type="text" th value="" disabled readonly>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <label>Plazo en años</label>
+                    <input class="form-control" type="text" th value="">
+                </div>
+                <div class="col">
+                    <label>Plazo en meses</label>
+                    <input class="form-control" type="text" th value="" disabled readonly>
+                </div>
+            </div>
+
+
         </div>
 
         <div class="buttons">
@@ -65,14 +138,17 @@
         <table id="myTable" class="display">
             <thead>
             <tr>
-                <th>Nombre</th>
-                <th>Correo</th>
-                <th>Telefono</th>
-                <th>Acciones</th>
+                <th>No de pago</th>
+                <th>Fecha de pago</th>
+                <th>Pago normal</th>
+                <th>Aplicado a intereses</th>
+                <th>Aplicado a capital</th>
+                <th>Abono a capital</th>
+                <th>Saldo a capital</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="Plot: ${Clients}">
+            <tr>
 
             </tr>
             </tbody>

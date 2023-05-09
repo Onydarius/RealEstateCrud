@@ -301,7 +301,7 @@ body.dark .switch::before{
     font-size: 30px;
     font-weight: 500;
     color: var(--text-color);
-    padding: 12px 60px;
+    padding: 12px 0px;
 }
 
 .sidebar.close ~ .home{
@@ -360,6 +360,8 @@ input {
     justify-content: center;
     align-items: center;
     display: grid;
+}
 
-
+.phone-p{
+        margin-bottom: 0 !important;
 }

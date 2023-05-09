@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
+    <title>Clientes</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -73,7 +74,7 @@
                         <td th:text="|${Client.name} ${Client.firstLastName} ${Client.secondLastName}|"></td>
                         <td th:text="${Client.email}"></td>
                         <td>
-                            <p th:each="phone : ${Client.phone}" th:text = "${phone.number}"></p>
+                            <p th:each="phone : ${Client.phone}" th:text = "${phone.number}" class="phone-p"></p>
 
                         </td>
                         <td>
@@ -106,7 +107,7 @@
         <div id="clientModal" class="modal fade  modal-lg">
             <div class="modal-dialog">
                 <div class="modal-content" role="tablist">
-                    <form th:action="@{/Clients/Save}" th:object="${Client}" method="post" id="form">
+                    <form action="/Clients/Save" method="post" id="form">
                         <div class="modal-header">
                             <h4 class="modal-title">Agregar Cliente</h4>
                             <button type="button" class="btn-close modal_btn_close" data-bs-dismiss="modal"

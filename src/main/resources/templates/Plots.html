@@ -3,11 +3,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
+    <title>Terrenos</title>
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Terrenos</title>
     <!----======== CSS ======== -->
     <link rel="stylesheet" th:href="@{../css/style.css}">
 
@@ -55,7 +56,7 @@
     <div class=" container">
         <div>
             <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#clientModal">
-                <i class='bx bxs-user-plus'></i>Añadir cliente
+                <i class='bx bxs-user-plus'></i>Añadair terrenos
             </button>
         </div>
 
@@ -79,8 +80,17 @@
                 <td th:text="${Plot.surface}"></td>
                 <td th:text="${Plot.pricePerMeter}"></td>
                 <td th:text="(${Plot.surface} * ${Plot.pricePerMeter})"></td>
-                <td th:text="${Plot.pricePerMeter}"></td>
-
+                <td>
+                    <a class="edit" data-bs-toggle="modal" data-bs-target="#clientModal">
+                       <i class='bx bxs-edit-alt'></i>
+                    </a>
+                    <a class="delete" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                        <i class='bx bxs-trash'></i>
+                    </a>
+                    <a class="edit">
+                        <i class='bx bx-chevron-right'></i>
+                    </a>
+                </td>
             </tr>
             </tbody>
         </table>
