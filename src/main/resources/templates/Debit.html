@@ -32,7 +32,9 @@
 
     <!----===== Table format ===== --->
     <script th:src="@{../js/formatTableWithoutSearchBar.js}"></script>
-    <!----===== Table format ===== --->
+    <!----===== Debit script ===== --->
+    <script th:src="@{../js/debit.js}"></script>
+    <!----===== Load NavBar ===== --->
     <script th:src="@{../js/loadNavBar.js}"></script>
 
 </head>
@@ -56,101 +58,86 @@
         <div class="text d-flex justify-content-between">
             Financiamiento
             <div>
-                <button class="btn btn-dark">Generar tabla</button>
-                <button type="button" class="btn btn-secondary">Financiar</button>
+                <button class="btn btn-dark" onclick="calculateTable()">Generar tabla</button>
+                <button class="btn btn-secondary" onclick="handlerSubmit()">Financiar</button>
             </div>
         </div>
-        <div>
-            <div class="col">
-                <label>Cliente</label>
-                <select class="form-select" th:each="Client: ${Clients}">
-                    <option selected disabled>Seleccione el cliente</option>
-                    <option th:value="${Client.id}" th:text="${Client.name}"></option>
-                </select>
-            </div>
 
+
+
+        <form action="/finance" method="get" id="myForm">
             <div class="col">
                 <label>Terreno</label>
-                <select class="form-select" th:each="Plot: ${Plots}">
-                    <option selected disabled>Seleccione el terreno</option>
-                    <option th:value="${Plot.id}" th:text="${Plot.plotNo}" th:data-surface="${Plot.surface}"
-                            th:data-price-per-meter="${Plot.pricePerMeter}"
-                    > </option>
-                </select>
-
+                <input class="form-control" onchange="updatePlotForm()" list="plotList" id="plots" placeholder="Escribe el numero del terreno">
+                <datalist id="plotList">
+                    <option th:each="Plot: ${Plots}" th:data-price="${Plot.pricePerMeter}"  th:data-id="${Plot.id}" th:data-surface="${Plot.surface}" th:value="${Plot.plotNo}" th:text="${Plot.plotNo}"></option>
+                </datalist>
             </div>
 
             <div class="row">
                 <div class="col">
                     <label>Precio de venta</label>
-                    <input class="form-control" type="text" th value="" disabled readonly>
-                </div>
-                <div class="col">
-                    <label>Fecha del primer pago</label>
-                    <input type="date" id="birthday" required="true"
-                           class="form-control" name="trip-start" value="" min="1900-01-01"
-                           max="2025-12-31">
+                    <input class="form-control" id="price" type="text" th value="" disabled readonly>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
                     <label>Porcentaje de enganche</label>
-                    <input class="form-control" type="text" th value="15%">
+                    <div class="input-group">
+                        <input class="form-control" type="text" th value="10" id="deposit-percentage" onchange="updatePlotForm()">
+                        <span class="input-group-text">%</span>
+                    </div>
                 </div>
                 <div class="col">
                     <label>Enganche</label>
-                    <input class="form-control" type="text" th value="" disabled readonly>
+                    <input class="form-control" type="text" th value="" id="deposit" disabled readonly>
                 </div>
                 <div class="col">
                     <label>Interes Mensual</label>
-                    <input class="form-control" type="text" th value="">
+                    <div class="input-group">
+                        <input class="form-control" type="text" th value="1.30" id="interest" onchange="updatePlotForm()">
+                        <span class="input-group-text">%</span>
+                    </div>
+
                 </div>
             </div>
             <div class="row">
                 <div class="col">
                     <label>Saldo a financiar</label>
-                    <input class="form-control" type="text" th value="" disabled readonly>
+                    <input class="form-control" type="text" th value="" disabled readonly id="total">
                 </div>
                 <div class="col">
                     <label>Pago mensual</label>
-                    <input class="form-control" type="text" th value="" disabled readonly>
+                    <input class="form-control" type="text" th value="" disabled readonly id="month-pay">
                 </div>
             </div>
 
             <div class="row">
                 <div class="col">
                     <label>Plazo en años</label>
-                    <input class="form-control" type="text" th value="">
+                    <input class="form-control" type="text" th value="5" id="period" onchange="updatePlotForm()">
                 </div>
                 <div class="col">
                     <label>Plazo en meses</label>
-                    <input class="form-control" type="text" th value="" disabled readonly>
+                    <input class="form-control" type="text" th value="60" disabled readonly id="period-month">
                 </div>
             </div>
 
 
-        </div>
+        </form>
 
-        <div class="buttons">
-
-        </div>
 
         <table id="myTable" class="display">
             <thead>
             <tr>
                 <th>No de pago</th>
-                <th>Fecha de pago</th>
-                <th>Pago normal</th>
                 <th>Aplicado a intereses</th>
                 <th>Aplicado a capital</th>
-                <th>Abono a capital</th>
                 <th>Saldo a capital</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
 
-            </tr>
             </tbody>
         </table>
     </div>
@@ -162,5 +149,4 @@
 
 
 </body>
-
 </html>
