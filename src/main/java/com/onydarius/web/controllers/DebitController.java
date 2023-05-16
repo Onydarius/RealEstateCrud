@@ -38,6 +38,7 @@ public class DebitController {
 
     @GetMapping({"/finance","/finance"})
     public  String financePlot(Model model){
+        model.addAttribute("Clients", clientService.listAllClient());
         model.addAttribute("Plots", plotService.listAllPlots());
         model.addAttribute("Debts", debtService.listAllDebtPlot());
         return "finance";

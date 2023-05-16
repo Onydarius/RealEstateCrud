@@ -34,6 +34,8 @@
     <script th:src="@{../js/formatTable.js}"></script>
     <!----===== Table format ===== --->
     <script th:src="@{../js/loadNavBar.js}"></script>
+    <!----===== Finance script ===== --->
+    <script th:src="@{../js/finance.js}"></script>
 
 </head>
 
@@ -55,22 +57,59 @@
     <div class=" container">
         <div class="text">Financiamiento</div>
 
+        <div class="form-group col">
+            <label for="clients">Cliente</label>
+            <input class="form-control" list="clientList" id="clients" placeholder="Escribe el nombre del cliente">
+            <datalist id="clientList">
+                <option th:each="Client: ${Clients}" th:data-id="${Client.id}" th:value="|${Client.name} ${Client.firstLastName} ${Client.secondLastName}|" th:text="|${Client.name} ${Client.firstLastName} ${Client.secondLastName}|"></option>
+            </datalist>
+        </div>
+        <div class="form-group col">
+            <label>Fecha del primer pago</label>
+            <input type="date" id="birthday" required="true"
+                   class="form-control" name="trip-start" value="" min="1900-01-01"
+                   max="2025-12-31">
+        </div>
+        <div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                <label class="form-check-label" for="inlineRadio1">Pago del enganche</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                <label class="form-check-label" for="inlineRadio2">Pago parcial del enganche</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="" id="first-pay-checkbox">
+                <label class="form-check-label" for="first-pay-checkbox">
+                    Primer pago
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="" id="capital-pay-checkbox" onchange="hideAndShowInput()">
+                <label class="form-check-label" for="capital-pay-checkbox">
+                    Abono a capital
+                </label>
+            </div>
+        </div>
 
-        <table id="myTable" class="display">
-            <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Correo</th>
-                <th>Telefono</th>
-                <th>Acciones</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="Plot: ${Clients}">
+        <div class="form-group" id="amortizationContainer">
+            <label>Enganche</label>
+            <input class="form-control" type="text" id="amortization" disabled>
+        </div>
+        <div class="form-group" id="first-pay-container">
+            <label>Primer pago</label>
+            <input class="form-control" type="text" id="first-pay" disabled>
+        </div>
+        <div class="form-group d-none" id="capital-pay-container">
+            <label>Abono a capital</label>
+            <input class="form-control" type="text" id="capital-pay" >
+        </div>
 
-            </tr>
-            </tbody>
-        </table>
+        <div class="form-group col">
+            <label>Total a pagar</label>
+            <input class="form-control" type="text" id="total" disabled>
+        </div>
     </div>
 
 </section>
