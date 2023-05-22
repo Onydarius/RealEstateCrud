@@ -34,6 +34,10 @@
     <!----===== Table format ===== --->
     <script th:src="@{../js/loadNavBar.js}"></script>
 
+    <script src="http://localhost:35729/livereload.js"></script>
+
+
+
 </head>
 
 <body>
@@ -46,37 +50,28 @@
 
 <section class="home">
     <div id="liveAlertPlaceholder"></div>
-
     <div class=" container">
+        <div class="text">Dashboard</div>
 
-        <div class="text d-flex justify-content-between" >
-            <div class="text" th:text="|${Client.name} ${Client.firstLastName} ${Client.secondLastName}|"></div>
+        <div style="">
+            <div style="width:200px; height:200px; background-color: blue;">
+                asadsdssdsdsdasdasd
 
-            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#clientModal">
-                <i class='bx bxs-user-plus'></i>Añadir cliente
-            </button>
+            </div>
+            <div style="width:200px; height:200px; background-color: red;">
+                a
+            </div>
+            <div style="width:200px; height:200px; background-color: red;">
+                a
+            </div>
+            <div style="width:200px; height:200px; background-color: red;">
+                a
+            </div>
+            <div style="width:200px; height:200px; background-color: red;">
+                a
+            </div>
 
         </div>
-
-        <div class="buttons">
-
-        </div>
-
-        <table id="myTable" class="display">
-            <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Correo</th>
-                <th>Telefono</th>
-                <th>Acciones</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="Plot: ${Clients}">
-
-            </tr>
-            </tbody>
-        </table>
     </div>
 
 </section>

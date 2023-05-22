@@ -25,6 +25,11 @@ public class ClientController {
         return "Client";
     }
 
+    @GetMapping({"/","/dashboard","/Dashboard"})
+    public  String dashboard(Model model){
+        return "dashboard";
+    }
+
     @PostMapping("/Clients/Save")
     public  String saveClient(@Validated Client client, Model model){
         service.save(client);
