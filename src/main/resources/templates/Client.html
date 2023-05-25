@@ -69,7 +69,9 @@
                         <th>Nombre</th>
                         <th>Correo</th>
                         <th>Telefono</th>
-                        <th>Acciones</th>
+                        <th>Ver</th>
+                        <th>Eliminar</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -81,26 +83,15 @@
                             <p th:each="phone : ${Client.phone}" th:text = "${phone.number}" class="phone-p"></p>
 
                         </td>
+
                         <td>
-                            <a class="edit" data-bs-toggle="modal" data-bs-target="#clientModal"
-                                th:data-id="${Client.id}" th:data-name="${Client.name}"
-                                th:data-first-lastname="${Client.firstLastName}"
-                                th:data-second-lastname="${Client.secondLastName}" th:data-email="${Client.email}"
-                                th:data-address="${Client.address}"
-                                th:data-address-complemet="${Client.addressComplement}" th:data-state="${Client.state}"
-                                th:data-city="${Client.city}" th:data-postal-code="${Client.postalCode}"
-                                th:data-occupation="${Client.occupation}" th:data-working-on="${Client.workingOn}"
-                                th:data-birthplace="${Client.birthState}" th:data-birthday="${Client.birthday}"
-                                th:data-civil-status="${Client.civilStatus}"
-                                th:data-arrangement-properties="${Client.arrangementProperty}"><i
-                                    class='bx bxs-edit-alt'></i></a>
-                            <!-- th:data-phone=""
-                                 th:data-phone-type=""-->
-                            <a class="delete" data-bs-toggle="modal" data-bs-target="#deleteModal"
+                            <a class="icon" th:href="|Client/${Client.id}"><i class='bx bxs-user-rectangle icon'></i></a>
+                        </td>
+                        <td>
+                            <a  data-bs-toggle="modal" data-bs-target="#deleteModal"
                                 th:data-id="${Client.id}"
                                 th:data-name="|${Client.name} ${Client.firstLastName} ${Client.secondLastName}|"><i
-                                    class='bx bxs-trash'></i></a>
-                            <a class="edit" th:href="|Client/${Client.id}"><i class='bx bx-chevron-right'></i></a>
+                                    class='bx bxs-trash icon'></i></a>
                         </td>
                     </tr>
                 </tbody>
@@ -144,7 +135,7 @@
                             <div id="phone-container" class="md">
                                 <div class="row" id="phone-div">
                                     <div class="form-group col-6">
-                                        <label id="phone-label-1">Telefono 1</label>
+                                        <label id="phone-labe   l-1">Telefono 1</label>
                                         <input id="phone-1" type="text" class="form-control" required="true">
                                     </div>
 

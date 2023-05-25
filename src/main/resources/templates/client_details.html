@@ -49,41 +49,102 @@
 
     <div class=" container">
 
-        <div class="text d-flex justify-content-between" >
-            <div class="text" th:text="|${Client.name} ${Client.firstLastName} ${Client.secondLastName}|"></div>
+        <div class="text d-flex justify-content-between align-items-center">
+            <div class="text"  th:text="|${Client.name} ${Client.firstLastName} ${Client.secondLastName}|"></div>
 
-            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#clientModal">
-                <i class='bx bxs-user-plus'></i>Añadir cliente
+            <button type="button" style="height: fit-content;" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#clientModal">
+                <i class='bx bxs-user-plus'></i>Editar
             </button>
-
         </div>
 
-        <div class="buttons">
+        <ul class="nav nav-underline">
+            <li class="nav-item">
+                <a class="nav-link active tabs" aria-current="page" href="#info">Información personal</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#plots">Pagos pendientes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#history">Historial de compra</a>
+            </li>
+        </ul>
 
+        <div class="tab-content">
+            <div class="form-group d-flex">
+                <label class="fw-bold" for="email">Correo:</label>
+                <p th:text="|${Client.email}|" id="email"></p>
+            </div>
+
+            <div class="form-group d-flex">
+                <label class="fw-bold" for="email">Telefonos: </label>
+                <p th:each="phone : ${Client.phone}" th:text = "|${phone.number} ${phone.type}|" class="phone-p"></p>
+            </div>
+
+            <div class="form-group d-flex">
+                <label class="fw-bold" for="email">Dirección: </label>
+                <p th:text="${Client.address}"></p>
+                <p th:text="${Client.addressComplement}"></p>
+                <p th:text="${Client.state}"></p>
+                <p th:text="${Client.city}"></p>
+                <p th:text="${Client.postalCode}"></p>
+            </div>
+
+            <div class="form-group d-flex">
+                <label class="fw-bold" for="email">Ocupación: </label>
+                <p th:text="${Client.occupation}"></p>
+            </div>
+
+            <div class="form-group d-flex">
+                <label class="fw-bold" for="email">Trabaja en: </label>
+                <p th:text="${Client.workingOn}"></p>
+            </div>
+
+            <div class="form-group d-flex">
+                <label class="fw-bold" for="email">Fecha de nacimiento</label>
+                <p       th:text="${Client.birthday}"></p>
+            </div>
+
+            <div class="form-group d-flex">
+                <label class="fw-bold" for="email">Lugar de nacimiento</label>
+                <p       th:text="|${Client.birthCity}, ${Client.birthState}|"></p>
+            </div>
+
+            <div class="form-group d-flex">
+                <label class="fw-bold" for="email">Estado civil</label>
+                <p       th:text="${Client.civilStatus}"></p>
+            </div>
+
+            <div class="form-group d-flex">
+                <label class="fw-bold" for="email">Regimen de bienes</label>
+                <p       th:text="${Client.arrangementProperty}"></p>
+            </div>
         </div>
 
-        <table id="myTable" class="display">
-            <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Correo</th>
-                <th>Telefono</th>
-                <th>Acciones</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="Plot: ${Clients}">
 
-            </tr>
-            </tbody>
-        </table>
+
     </div>
 
 </section>
 
 
 
+<script>
+    let tabs = document.querySelectorAll(".tabs");
+    let tabContents = document.querySelectorAll(".tab-content div");
+    tabs.forEach((tab, index) => {
+    tab.addEventListener("click", () => {
+        tabContents.forEach((content) => {
+            content.classList.remove("active");
+        });
+    tabs.forEach((tab) => {
+      tab.classList.remove("active");
+    });
+    tabContents[index].classList.add("active");
+    tabs[index].classList.add("active");
+  });
+});
 
+</script>
 
 </body>
 

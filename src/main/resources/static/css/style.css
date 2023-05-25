@@ -365,3 +365,8 @@ input {
 .phone-p{
         margin-bottom: 0 !important;
 }
+
+.icon{
+    font-size: 32px;
+    color: black;
+}
