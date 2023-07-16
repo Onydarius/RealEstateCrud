@@ -370,3 +370,49 @@ input {
     font-size: 32px;
     color: black;
 }
+
+.card-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cards-container{
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.count-text{
+    color: #008710;
+    font-size: 32px;
+    font-weight: 800;
+}
+
+.card-title-dashboard{
+    font-size: 24px;
+    font-weight: 600;
+}
+.container-dash{
+    display: flex;
+    align-items:center;
+}
+
+
+.graphic-container{
+
+}
+
+
+.box-container{
+    background-color: #ffffff;
+    border-bottom: 1px solid #d4d4d4;
+    border-radius: 10px;
+    margin: 20px;
+    padding: 10px;
+}
+
+.box-container-title{
+    font-size: 32px;
+    font-weight: 600;
+}
