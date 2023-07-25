@@ -2,7 +2,6 @@ package com.onydarius.web.controllers;
 
 import com.onydarius.web.entities.Client;
 import com.onydarius.web.services.ClientService;
-import com.onydarius.web.services.interfaces.IClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,11 +22,6 @@ public class ClientController {
         model.addAttribute("Client", new Client());
         model.addAttribute("action",    "Save");
         return "Client";
-    }
-
-    @GetMapping({"/","/dashboard","/Dashboard"})
-    public  String dashboard(Model model){
-        return "dashboard";
     }
 
     @PostMapping("/Clients/Save")

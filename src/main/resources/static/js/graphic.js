@@ -1,13 +1,44 @@
+var date = new Date();
+
+var months = ["Enero",
+"Febrero",
+"Marzo",
+"Abril",
+"Mayo",
+"Junio",
+"Julio",
+"Agosto",
+"Septiembre",
+"Octubre",
+"Noviembre",
+"Diciembre", ]
+
+var firstMonths = months.splice(date.getMonth()+1);
+var lastMonths = months.splice(0, date.getMonth()+1)
+
+firstMonths = firstMonths.map(i=> i + ' ' + (date.getFullYear() -1))
+lastMonths = lastMonths.map(i=> i + ' ' + (date.getFullYear()))
+
+var labels =  firstMonths.concat(lastMonths);
+
 const ctx = document.getElementById('grafica');
 
   new Chart(ctx, {
     type: 'bar',
+    options: {
+            plugins: {
+              legend: {
+                display: false
+              },
+            }
+          },
     data: {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      labels: labels,
       datasets: [{
-        label: '# of Votes',
         data: [12, 19, 3, 5, 2, 3],
-        borderWidth: 1
+        borderWidth: 1,
+        borderColor: '#36A2EB',
+        backgroundColor: '#9BD0F5',
       }]
     },
     options: {
@@ -18,3 +49,5 @@ const ctx = document.getElementById('grafica');
       }
     }
   });
+
+

@@ -10,7 +10,9 @@
     <link rel="stylesheet" th:href="@{../css/style.css}">
 
     <!----===== Boxicons CSS ===== -->
-    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+
 
     <!-----===== JQUERY =====---->
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
@@ -55,30 +57,20 @@
         <div class="text">Dashboard</div>
             <div class="container cards-container row">
                 <div class="box-container card-container col" style="">
-                    <div class="card-title-dashboard "> Title </div>
+                    <div class="card-title-dashboard "> Clientes </div>
                     <div class="row container-dash">
-                        <div class="count-text col"> Total </div>
-                        <div class="col"> de xx en total</div>
+                        <div class="count-text col" th:text="|+ ${totalClients}|"> </div>
+                        <div class="col" th:text="|de ${Clients.size != null ? Clients.size : 0} en total|"></div>
                     </div>
                     <div>
                         <a href="">Ver todos</a>
                     </div>
                 </div>
                 <div class="box-container card-container col" style="">
-                    <div class="card-title-dashboard dashboard-text"> Title </div>
-                    <div class="row container-dash dashboard-text">
-                        <div class="count-text col"> Total </div>
-                        <div class="col"> en total</div>
-                    </div>
-                    <div>
-                        <a href="" class="">Ver todos</a>
-                    </div>
-                </div>
-                <div class="box-container card-container col" style="">
-                    <div class="card-title-dashboard "> Title </div>
-                    <div class="row container-dash ">
-                        <div class="count-text col"> Total </div>
-                        <div class="col"> en total</div>
+                    <div class="card-title-dashboard "> Transacciones </div>
+                    <div class="row container-dash">
+                        <div class="count-text col" th:text="|+ ${totalCash}|"> </div>
+                        <div class="col" th:text="|de ${Cash?.size != null ? Cash.size : 0} en total|"></div>
                     </div>
                     <div>
                         <a href="">Ver todos</a>
@@ -96,10 +88,9 @@
             <table id="myTable" class="display">
                 <thead>
                 <tr>
-                    <th>Numero de terreno</th>
-                    <th>Superficie</th>
-                    <th>Precio por metro</th>
-                    <th>Precio total</th>
+                    <th>Fecha</th>
+                    <th>Cliente</th>
+                    <th>Cantidad</th>
                     <th>Acciones</th>
                 </tr>
                 </thead>

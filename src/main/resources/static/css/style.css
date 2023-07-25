@@ -379,8 +379,9 @@ input {
 }
 
 .cards-container{
-    margin: 0 !important;
+    gap: 40px;
     padding: 0 !important;
+    margin: 0px !important;
 }
 
 .count-text{
@@ -408,8 +409,8 @@ input {
     background-color: #ffffff;
     border-bottom: 1px solid #d4d4d4;
     border-radius: 10px;
-    margin: 20px;
     padding: 10px;
+    margin-bottom: 20px;
 }
 
 .box-container-title{
